@@ -10,7 +10,9 @@ const URL =
 var cityElems = Array.from(document.getElementsByClassName("citta"));
 
 const temp = new Observable(subscriber => tick.subscribe({
-
+    next(n){
+      for (city)
+    }
 }));
 
 temp.subscribe({
