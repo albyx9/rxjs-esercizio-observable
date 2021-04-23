@@ -9,7 +9,7 @@ const URL =
 var city = document.getElementById("citta").innerHTML;
 var separatore = " -------------------------- ";
 //è un observable produce una serie di numeri periodicamenti 
-const tick = interval(10000);
+const tick = interval(1000000);
 //Costruisco l'observable, una classe di oggetti
 let conta = 0;
 const temp = new Observable(subscriber => tick.subscribe( { 
