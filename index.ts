@@ -20,17 +20,8 @@ const temp = new Observable(subscriber => tick.subscribe( {
     fetch(URL + city)
       .then(response =>  response.json())
         .then(data => 
-          subscriber.next(data.main.temp))
-       
-        if (conta == 4){
-          subscriber.complete()};
-          
+          subscriber.next(data.main.temp))        
   }
-    /*,
-  complete(n){
-    time(10000);
-
-  }*/
    } ) ); 
 
 // Due subscriber con un solo parametro, quello obblihatorio
