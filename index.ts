@@ -5,19 +5,23 @@ const URL =
   "https://api.openweathermap.org/data/2.5/weather?APPID=" +
   apiKey +
   "&units=metric&q=";
-  const tick = interval(1000);
-  
-
+  const tick = interval(1000);  //Observable produce un intervallo
 //il metodo utilizzato restituisce un Array oggetto da un oggetto con proprietà iterable
 var cityElems = Array.from(document.getElementsByClassName("citta"));
 
+const temp = new Observable(subscriber => tick.subscribe({
 
-for (let elem of cityElems) {
-  elem.onclick = () => display(elem.innerHTML);
-}
+}));
 
-document.getElementById("calcoloMedia").onclick = () => media();
-
+temp.subscribe({
+  next(x){console.log(x);}
+})
+temp.subscribe({
+  next(x){
+    document.getElementById("output").innerHTML += x + " (Media Temperatura)" + "<br>";
+  }
+})
+/*
 function doCity(city, callback) {
   let promise = fetch(URL + city)
     .then(response => response.json(), error => alert(error))
@@ -36,5 +40,12 @@ async function media() {
     cityElems.map(cityElem => doCity(cityElem.innerHTML, data => data.main.temp))
   );
   let somma = temps.reduce((somma, temp) => temp + somma);
-  document.getElementById("media").innerText = somma / cityElems.length;
+  document.getElementById("output").innerText = somma / cityElems.length;
 }
+
+/*for (let elem of cityElems) {
+  elem.onclick = () => display(elem.innerHTML);
+}
+
+document.getElementById("calcoloMedia").onclick = () => media();
+*/
