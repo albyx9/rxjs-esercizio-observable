@@ -12,7 +12,7 @@ var separatore = " -------------------------- ";
 const tick = interval(1000);
 //Costruisco l'observable, una classe di oggetti
 let conta = 0;
-let temperatura_attuale = 0;
+let temperatura = 0;
 const temp = new Observable(subscriber => tick.subscribe( { 
 //publisher produce dati
 //i dati vengono consumati con il metodo subscribe
@@ -21,8 +21,8 @@ const temp = new Observable(subscriber => tick.subscribe( {
     fetch(URL + city)
       .then(response =>  response.json())
       .then(dati => {
-        var valore_attuale = dati.main.temp;
-        if (temperatura_attuale != valore_attuale)
+        var temperatura_attuale = dati.main.temp;
+        if (temperatura_attuale != temperatura)
           subscriber.next(dati.main.temp)
         })
   }
@@ -35,7 +35,7 @@ temp.subscribe({
 })
 temp.subscribe({   
   next(x) {
-    temperatura_attuale = x;
+    temperatura = x;
     document.getElementById("output").innerHTML+=
   x + "<br>";},
   complete() {
