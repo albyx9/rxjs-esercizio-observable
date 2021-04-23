@@ -8,7 +8,7 @@ const URL =
   "&units=metric&q=";
 var city = document.getElementById("citta").innerHTML;
 var separatore = " -------------------------- ";
-//è un observable produce una serie di numeri periodicamenti 
+//è un observable produce una serie di numeri periodicamente
 const tick = interval(10000);
 //Costruisco l'observable, una classe di oggetti
 let conta = 0;
