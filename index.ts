@@ -9,9 +9,10 @@ const URL =
 var city = document.getElementById("citta").innerHTML;
 var separatore = " -------------------------- ";
 //è un observable produce una serie di numeri periodicamenti 
-const tick = interval(10000);
+const tick = interval(1000);
 //Costruisco l'observable, una classe di oggetti
 let conta = 0;
+let temperatura_attuale = 0;
 const temp = new Observable(subscriber => tick.subscribe( { 
 //publisher produce dati
 //i dati vengono consumati con il metodo subscribe
@@ -19,28 +20,22 @@ const temp = new Observable(subscriber => tick.subscribe( {
   next(n) { 
     fetch(URL + city)
       .then(response =>  response.json())
-        .then(data => 
-          subscriber.next(data.main.temp))
-       
-        if (conta == 4){
-          subscriber.complete()};
-          
+      .then(dati => {
+        var valore_attuale = dati.main.temp;
+        if (temperatura_attuale != valore_attuale)
+          subscriber.next(dati.main.temp)
+        })
   }
-    /*,
-  complete(n){
-    time(10000);
-
-  }*/
    } ) ); 
 
-// Due subscriber con un solo parametro, quello obblihatorio
+// Due subscriber con un solo parametro, quello obbligatorio
 //i subscriber accedono ai dati prodotti dal publisher
 temp.subscribe({   
   next(x) {console.log(x);}
 })
 temp.subscribe({   
   next(x) {
-    conta+=1;
+    temperatura_attuale = x;
     document.getElementById("output").innerHTML+=
   x + "<br>";},
   complete() {
