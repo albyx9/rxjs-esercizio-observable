@@ -11,7 +11,9 @@ var cityElems = Array.from(document.getElementsByClassName("citta"));
 
 const temp = new Observable(subscriber => tick.subscribe({
     next(n){
-      
+      fetch(URL + city)
+        .then()
+        .then()
     }
 }));
 
