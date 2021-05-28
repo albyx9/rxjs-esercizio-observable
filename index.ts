@@ -11,7 +11,7 @@ var cityElems = Array.from(document.getElementsByClassName("citta"));
 
 const temp = new Observable(subscriber => tick.subscribe({
     next(n){
-      for (city)
+      
     }
 }));
 
@@ -24,12 +24,14 @@ temp.subscribe({
   }
 })
 /*
+//N -- gestire promise e callback
 function doCity(city, callback) {
   let promise = fetch(URL + city)
     .then(response => response.json(), error => alert(error))
     .then(data => callback(data));
   return promise;
 }
+//N -- gestire la risposta della function e inner
 async function display(city) {
   let t = await doCity(city, data => data.main.temp);
   document.getElementById("risposta").innerHTML =
