@@ -5,7 +5,7 @@ const URL =
   "https://api.openweathermap.org/data/2.5/weather?APPID=" +
   apiKey +
   "&units=metric&q=";
-  const tick = interval(60000);  //Observable produce un intervallo
+  const tick = interval(2000);  //Observable produce un intervallo
 //il metodo utilizzato restituisce un Array oggetto da un oggetto con proprietà iterable
 var cityElems = Array.from(document.getElementsByClassName("citta"));
 
@@ -18,17 +18,18 @@ const temp = new Observable(subscriber => tick.subscribe({
           .then(response => response.json())
           .then(data => subscriber.next(data.main.temp))
       }
-      if (temps.length == cityElems.length)
         subscriber.complete()
     }
 }));
 
 temp.subscribe({
-  next(x){temps.push(x);}
+  next(x){temps.push(x);},
+  complete(){
+    let val_somma = temps.reduce((somma, temperature) => temperature + somma)
+  document.getElementById("output").innerText = val_somma / cityElems.length;
+  }
 })
-temp.complete({
-  next(x){}
-})
+
 
 /*
 //N -- gestire promise e callback
