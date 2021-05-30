@@ -8,21 +8,16 @@ const URL =
   const tick = interval(60000);  //Observable produce un intervallo
 //il metodo utilizzato restituisce un Array oggetto da un oggetto con proprietà iterable
 var cityElems = Array.from(document.getElementsByClassName("citta"));
-//Caldola Media
-function media(){
-  let temps = []
-  for (city in cityElems.innerHTML){
 
-  }
 
-}
-console.log(media());
 const temp = new Observable(subscriber => tick.subscribe({
     next(x){
-
-      fetch(URL)
-        .then()
-        .then()
+      for(let city in cityElems.innerHTML){
+        
+        fetch(URL + city)
+          .then()
+          .then()
+      }
     }
 }));
 
