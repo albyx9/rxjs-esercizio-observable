@@ -9,26 +9,27 @@ const URL =
 //il metodo utilizzato restituisce un Array oggetto da un oggetto con proprietà iterable
 var cityElems = Array.from(document.getElementsByClassName("citta"));
 
-
+let temps = [];
 const temp = new Observable(subscriber => tick.subscribe({
     next(x){
       for(let city in cityElems.innerHTML){
         
         fetch(URL + city)
-          .then()
-          .then()
+          .then(response => response.json())
+          .then(data => subscriber.next(data.main.temp))
       }
+      if (temps.length == cityElems.length)
+        subscriber.complete()
     }
 }));
 
 temp.subscribe({
-  next(x){console.log(x);}
+  next(x){temps.push(x);}
 })
-temp.subscribe({
-  next(x){
-    document.getElementById("output").innerHTML += x + " (Media Temperatura)" + "<br>";
-  }
+temp.complete({
+  next(x){}
 })
+
 /*
 //N -- gestire promise e callback
 function doCity(city, callback) {
