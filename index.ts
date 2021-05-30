@@ -8,13 +8,13 @@ const URL =
   const tick = interval(60000);  //Observable produce un intervallo
 //il metodo utilizzato restituisce un Array oggetto da un oggetto con proprietà iterable
 var cityElems = Array.from(document.getElementsByClassName("citta"));
-
+//Caldola Media
 function media(){
-  var s = "";
-  for (let city in cityElems){
-     s += "citta --> " + city + "\n";
+  let temps = []
+  for (city in cityElems.innerHTML){
+
   }
-  return s;
+
 }
 console.log(media());
 const temp = new Observable(subscriber => tick.subscribe({
@@ -42,12 +42,6 @@ function doCity(city, callback) {
     .then(data => callback(data));
   return promise;
 }
-//N -- gestire la risposta della function e inner
-async function display(city) {
-  let t = await doCity(city, data => data.main.temp);
-  document.getElementById("risposta").innerHTML =
-    "A " + city + " ci sono " + t + " gradi";
-}
 
 //async costruisce una funzione che restituisce una promise
 async function media() {
@@ -58,11 +52,4 @@ async function media() {
   document.getElementById("output").innerText = somma / cityElems.length;
 }
 
-
-
-/*for (let elem of cityElems) {
-  elem.onclick = () => display(elem.innerHTML);
-}
-
-document.getElementById("calcoloMedia").onclick = () => media();
 */
