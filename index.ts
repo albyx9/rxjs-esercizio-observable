@@ -8,27 +8,17 @@ const URL =
   const tick = interval(2000);  //Observable produce un intervallo
 //il metodo utilizzato restituisce un Array oggetto da un oggetto con proprietà iterable
 var cityElems = Array.from(document.getElementsByClassName("citta"));
-for(let city in cityElems.innerHTML)
-console.log(city);
 
-let temps = [];
 const temp = new Observable(subscriber => tick.subscribe({
     next(n){
-        fetch(URL + city)
+        fetch(URL)
           .then(response => response.json())
           .then(data => subscriber.next(data.main.temp))
 
-        subscriber.complete()
     }
 }));
 
-temp.subscribe({
-  next(x){console.log(x);temps.push(x);},
-  complete(){
-    let val_somma = 0;//temps.reduce((somma, temperature) => temperature + somma)
-  document.getElementById("output").innerText = val_somma / cityElems.length;
-  }
-})
+temp.subscribe({})
 
 
 /*
