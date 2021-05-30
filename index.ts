@@ -18,7 +18,7 @@ function media(){
 }
 console.log(media());
 const temp = new Observable(subscriber => tick.subscribe({
-    next(n){
+    next(x){
 
       fetch(URL)
         .then()
