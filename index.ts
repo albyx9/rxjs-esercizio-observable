@@ -10,33 +10,19 @@ const URL =
 //il metodo utilizzato restituisce un Array oggetto da un oggetto con proprietà iterable
 let lista_citta = [];
 var cityElems = Array.from(document.getElementsByClassName("citta"));
-for (let city in cityElems){
-  const calcola_media = new Observable(subscriber => subscribe({
-    next(n){
-      fetch(URL + city)
-      .then(response => response.json())
-      .then(data => subr.next(data.main.temp))
-    }
-  }));
-  
-    calcola_media.subscribe({
-      next(x){
-        lista_citta.push(n);
-        console.log(lista_citta);
-      }
-    })
-}
-const temp = new Observable(subscriber => tick.subscribe({
-    next(n){
-        fetch(URL)
+
+const temp = new Observable(subscriber => {
+  for (let city in cityElems){
+        fetch(URL + city)
           .then(response => response.json())
           .then(data => subscriber.next(data.main.temp))
-
-    }
-}));
+  }
+  tick.subscribe({
+    
+})});
 
 temp.subscribe({
-  next(x){}
+  next(x){console.log(x);}
 })
 
 /*
